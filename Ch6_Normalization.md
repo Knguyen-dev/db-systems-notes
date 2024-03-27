@@ -69,4 +69,34 @@ At this point, Third Normal Form is the highest that we would typically go for t
 
 
 ### Fourth Normal Form 
-- Given the example For 
+- Here's an example for a bird house designing site. Each bird house has a model. These models will have their own unique sets of colors and styles. So here the primary key is {Model, Color, Style}, and this key can be used to determine the column values of any row. Now let's take the 'Prairie' model. When add a new color 'Green', we want to add that color for all styles of the 'Prairie' model. When we do that, we create rows for color green, each for the respective style.
+
+- ISSUE: However things can go awry when a database operation goes wrong or we make a mistake, and maybe we only actually get the new color for 'some' of the styles, rather than all of them. This creates some data inconsistency because our rule is that there should be a color for all of that model's style, not just one style. 
+
+- Analysis: We need to realize each model is associated specific set of colors (multiple values/colors). This is a multi-value dependency, which we can represent as {Model} =>> {Color}, which indicates that the value of 'Model' determines a a set of possible 'Color' values. As well as this, we should realize that each model has a specific set of 'styles'. So the following, {Model} =>> {Style}, indicates that the 'Model' determines the set of styles as well. 
+
+- ISSUE 2: In 4NF, multi-valued dependencies, such as Color and Style must depend on the entire key, which isn't true here because we got htem from 'Model', which is just part of the key.
+
+- SOLUTION: Since Model determined the set of Colors and set of Styles, get rid of the single table AND split those out into separate tables. Now when we want to add a new color to a specific Model, we just add one row to the 'Model_Colors_Available' table, instead of adding a new row to our table for each style.
+1. Model_Colors_Available table: {Model} => {Color}
+2. Model_Styles_Available table: {Model} => {Style}
+
+
+### Fifth Normal Form:
+With a table in 5NF, you know it's here if it cannot be described as the logica lresult of joining tables together. 
+
+- For example, we have 3 brands of ice cream and the flavors they provide. Finally we have people, such as Jason, who will state the flavors and brands they like. So the table will be called 'Ice_Cream_By_Person'. It would be {Person, Brand Flavor} as the primary key. 
+
+- ISSUE: If we say Jason now likes a new brand of ice cream. We look at the current flavors he likes, and add new rows for Frosty's instead. So if he liked 'Strawberry' and 'Mint chocolate' before from other brands, we add two new rows for those flavors with brands Frosty's. The idea is that if he likes a flavor, we can assume that when he likes a new brand, he will like new brand's version of that flavor. However the issue is adding the two rows, as there's a chance we make a mistake and only add one. So what's the solution?
+
+- ANALYSIS: We know three key things: 
+  1. The Brands, and their flavors
+  2. The people, and the brands they like
+  3. The people, and the flavors they like
+- SOLUTION: Just create 3 tables
+  1. FlavorsByBrand: {Brand} => {Flavor}
+  2. PersonBrands: {Person} => {Brand}
+  3. PersonFlavors: {Person} => {Flavor} 
+
+# Credits:
+1. [Learn database normalization](https://www.youtube.com/watch?v=GFQaEYEc8_8)
