@@ -82,6 +82,13 @@ Database is represented as rows and columns, similar to an excel spreadsheet. Ea
 
 ## Entity-Relationship Model:
 A graphical/visual representation of our database. There are three types of notations "Chen notation", "Crow's foot", and "Uml class diagram notation". Meaning an entity relationship is simply a ER-Diagram, but you can use those types of notation.
+- Strong entity: Can exist without others
+- Weak entity: Cannot exist without another entity
+- Weak relationship: The PK of the weka entity includes the PK of the parent entity as a part of its own PK. Indicating a dependency on the parent.
+- Strong relationship: The PK of the entity isn't composed from the PK of the parent. Indicating that the entity has its own unique ID and isn't dependent on another entity for identification.
+
+
+
 
 
 ## Object oriented data model:

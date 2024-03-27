@@ -8,7 +8,7 @@ A relational data model allows us to see a database in a logically like with rel
 ## Types of keys and key rules:
 - Primary key: Attribute or sometimes combination of attributes that uniquely identify a row/record in the database. 
 - Foreign key: A key from a different 'foreign' table.
-- Composite key: Key composed of multiple attributes. Note that an attribute that's used to compose a key is a 'key attribute'
+- Composite key: Key composed of multiple attributes. Note that an attribute that's used to compose a key is a 'key attribute'. Useful as identifiers of weak entities, or when you have a composite entity (joint table). 
 - Superkey: Key that uses multiple columns to identify a record. It may have redundant data that isn't necessary for uniqueness.
 - Candidate key: A super key with the fewest attributes possible, so it has no redundant data.
 
@@ -28,6 +28,9 @@ Stores info about the design of the database. Things such as why certain decisio
 
 ## Entity relationships
 You can review chapter 2 data modeling for a review on relationships. [Here](https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/) is a review of Crow's foot and the notation.
+
+
+
 
 ## Indexes
 A data structure that allos dbms to quickly locate rows in a table, based on the values of one or more columns. Akin to indexes in a book where we can find a specific topic (the index) rather than scanning through the entire book. However, the idea is we index attributes that we use often, to effectively make use of this.
